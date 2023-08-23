@@ -1,44 +1,52 @@
+// Import required modules and libraries
 import { config } from "dotenv";
-import { Configuration, OpenAIApi } from "openai";
+import OpenAI from "openai";
 
 // Load environment variables from .env file
 config();
 
-// Create OpenAI API instance
-const openai = new OpenAIApi({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+// Create an instance of the OpenAI API
+const openai = new OpenAI();
 
-// Function to interact with the language model
-async function generateResponse(messages) {
-  const response = await openai.createChatCompletion({
-    model: "gpt-3.5-turbo",
-    messages: messages,
-    temperature: 0.7, // Adjust the temperature as needed
+// Function to generate responses from the language model
+async function generateResponse(messages, temperature = 0.7) {
+  // Create a chat completion request using OpenAI API
+  const response = await openai.chat.completions.create({
+    model: "gpt-3.5-turbo", // Select the language model
+    messages: messages,    // Messages array for conversation context
+    temperature: temperature, // Temperature controls randomness of output
   });
 
-  return response.data.choices[0].message.content;
+  // Return the content of the generated response
+  return response.choices[0].message.content;
 }
 
-// Example interactions
-async function main() {
+// Main function to demonstrate example interactions
+async function main(input) {
   try {
-    const userQuestion = "What is the capital of France";
-    const userMessages = [{ role: "user", content: userQuestion }];
+    
 
+    // Create user messages array
+    const userMessages = [{ role: "user", content: input }];
+
+    // Generate AI response for the user question
     const userResponse = await generateResponse(userMessages);
-    console.log("User Question:", userQuestion);
+    console.log("User Question:", input);
     console.log("AI Response:", userResponse);
 
+    // Define a system prompt template
     const promptTemplate = `
       Be very funny when answering questions
-      Question: ${userQuestion}
+      Question: ${input}
     `;
 
+    // Trim the prompt template
     const prompt = promptTemplate.trim();
 
+    // Create system prompt messages array
     const promptMessages = [{ role: "system", content: prompt }];
 
+    // Generate AI response for the system prompt
     const promptResponse = await generateResponse(promptMessages);
     console.log("Prompt Response:", promptResponse);
   } catch (error) {
@@ -46,5 +54,8 @@ async function main() {
   }
 }
 
-// Run the example interactions
-main();
+// Define a user question
+const userQuestion = "What is the capital of France";
+
+// Execute the main function
+main(userQuestion);
