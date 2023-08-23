@@ -23,5 +23,10 @@
   "bugs": {
     "url": "https://github.com/ehsanghaffar/large-language-model-exercises/issues"
   },
-  "homepage": "https://github.com/ehsanghaffar/large-language-model-exercises#readme"
+  "homepage": "https://github.com/ehsanghaffar/large-language-model-exercises#readme",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "langchain": "^0.0.132",
+    "openai": "^4.1.0"
+  }
 }
