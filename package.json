@@ -1,0 +1,27 @@
+{
+  "name": "large-language-model-exercises",
+  "version": "0.0.1",
+  "description": "This repository is designed to provide you with hands-on exercises and examples for working with large language models using the JavaScript programming language.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ehsanghaffar/large-language-model-exercises.git"
+  },
+  "keywords": [
+    "openai",
+    "gpt",
+    "ai",
+    "llms",
+    "chatgpt",
+    "langchain"
+  ],
+  "author": "Ehsan Ghaffar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ehsanghaffar/large-language-model-exercises/issues"
+  },
+  "homepage": "https://github.com/ehsanghaffar/large-language-model-exercises#readme"
+}
